@@ -133,6 +133,14 @@ section.content article > header > * {
   margin: 0 1rem;
 }
 
+section.content article > header > .upvotes > * {
+  margin-bottom: .5rem;
+}
+
+section.content article > header > .desc {
+  text-align: left;
+}
+
 section.content article iframe {
   width: 100%;
   height: 100%;

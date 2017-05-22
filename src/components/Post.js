@@ -36,9 +36,15 @@ class Post extends PureComponent {
           <div className="desc">
             <p className="title">{this.props.title}</p>
             <span className="link">
-              <a href={this.props.url}>Link</a>
+              <a
+                href={this.props.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {this.props.url}
+              </a>
             </span>
-            &nbsp;by&nbsp;
+            &nbsp;submitted by&nbsp;
             <a
               href={`https://reddit.com/u/${this.props.author}`}
               target="_blank"

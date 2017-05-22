@@ -24,7 +24,10 @@ class App extends Component {
           <nav>
             <ul>
               <li>
-
+                Home
+              </li>
+              <li>
+                Starred
               </li>
             </ul>
           </nav>

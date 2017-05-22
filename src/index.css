@@ -44,6 +44,15 @@ button:hover {
   /* transform: scale(1.05, 1.05); */
 }
 
+a, a:visited, a:active {
+  color: black;
+  transition: 0.2s all;
+}
+
+a:hover {
+  color: #3392fc;
+}
+
 h1, h2, h3, h4, h5 {
   margin: 0;
   padding: 0;
