@@ -114,7 +114,7 @@ export function fetchPosts () {
       })
 }
 
-export function star (index, id) {
+export function star (id) {
   return (dispatch, getState) => {
     dispatch(starPost(id));
     dispatch(starForUser(id));

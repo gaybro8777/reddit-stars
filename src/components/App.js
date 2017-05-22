@@ -13,6 +13,10 @@ class App extends Component {
   }
 
   render() {
+    const {
+      posts: { activeIndex, data }
+    } = this.props;
+
     return (
       <main className="App">
         <section className="top-nav">
@@ -29,21 +33,22 @@ class App extends Component {
         <section className="container">
           <section className="left-nav">
             <ul>
-            {this.props.posts.data.map((v, i) =>
+            {data.map((v, i) =>
               <PostItem
                 key={v.id}
                 {...v}
-                selected={this.props.activeIndex === i}
+                selected={activeIndex === i}
                 handleClick={() => this.props.view(i)}
-                handleStar={() => this.props.star(i, v.id)}
+                handleStar={() => this.props.star(v.id)}
               />
             )}
             </ul>
           </section>
           <section className="content">
-            { !this.props.posts.currentPost ||
+            { activeIndex === -1 ||
               <Post
-                {...this.props.posts.currentPost}
+                {...data[activeIndex]}
+                handleStar={() => this.props.star(data[activeIndex].id)}
               />
             }
           </section>

@@ -9,7 +9,7 @@ import './index.css';
 const iniitalState = {
   posts: {
     data: [],
-    activeIndex: 0,
+    activeIndex: -1,
     currentPost: null
   },
   user: {
