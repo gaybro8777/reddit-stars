@@ -1,4 +1,6 @@
 import * as firebase from 'firebase';
+// This API key should be in an external file passed through as an environment
+// variable, but for the sake of simplicity, it's included here in the repo.
 const config = {
   apiKey: "AIzaSyDc8-HJ7jemoxxbqOf9u7PZHGnjtm1zpQs",
   authDomain: "easeit-63fb2.firebaseapp.com",
