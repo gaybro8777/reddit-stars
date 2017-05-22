@@ -1,0 +1,119 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+section {
+  display: flex;
+}
+
+section.top-nav {
+  height: 5rem;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3392fc;
+  color: white;
+  padding: 1rem;
+}
+
+section.top-nav nav {
+  align-self: middle;
+}
+
+section.top-nav login {
+  align-self: flex-end;
+}
+
+section.top-nav ul {
+  display: flex;
+  flex-flow: row nowrap;
+  list-style-type: none;
+}
+
+section.top-nav ul li {
+  margin: 0 1rem;
+}
+
+section.container {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
+  // height: 90vh;
+}
+
+section.left-nav {
+  flex: 0 0 25%;
+  // overflow: scroll;
+  overflow-y: scroll;
+}
+
+section.left-nav ul li {
+  display: flex;
+  flex-flow: row nowrap;
+  max-height: 4rem;
+  padding: 1rem;
+  border: 1px solid black;
+}
+
+section.left-nav .post-item {
+  cursor: pointer;
+  padding: 0.5rem;
+  background-color: transparent;
+  transition: 0.2s all;
+}
+
+section.left-nav .post-item:hover {
+  background-color: #eee;
+}
+
+section.left-nav .post-item > * {
+  margin: 0 .5rem;
+}
+
+section.left-nav .post-item .upvotes {
+  font-size: .75rem;
+  font-weight: bold;
+}
+
+section.left-nav .post-item .title {
+  max-width: 15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+section.left-nav .post-item .thumb {
+
+}
+
+section.left-nav .post-item .desc {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: left;
+}
+
+section.content {
+  flex: 1 1 75%;
+}
+
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
