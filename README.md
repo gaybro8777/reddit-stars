@@ -4,6 +4,8 @@ A simple responsive Reddit reader interface with the ability to log in and save 
 
 **Live Link: [https://reddit-stars-ntovblhgdm.now.sh](https://reddit-stars-ntovblhgdm.now.sh)**
 
+![](https://github.com/danyim/reddit-stars/raw/master/public/screenshot.png)
+
 ## Features
 - Redux with actions organized by [ducks](https://github.com/erikras/ducks-modular-redux)
 - Email authentication via Firebase
