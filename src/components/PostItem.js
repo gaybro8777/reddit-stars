@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import star from '../star.svg';
 import starHighlighted from '../star-highlighted.svg';
 
 class PostItem extends Component {
+  static propTypes = {
+    handleStar: PropTypes.func.isRequired,
+    handleClick: PropTypes.func.isRequired,
+    selected: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
+  }
+
   render() {
     return (
       <li className={`post-item ${this.props.selected ? 'selected' : ''}`} onClick={this.props.handleClick}>
@@ -17,9 +26,6 @@ class PostItem extends Component {
           {this.props.ups}
         </div>
        <p className="title">{this.props.title}</p>
-        <div className="desc">
-
-        </div>
       </li>
     );
   }

@@ -105,6 +105,7 @@ export function fetchPosts () {
           thumbnail_width: v.data.thumbnail_width,
           id: v.data.id,
           created: v.data.created,
+          num_comments: v.data.num_comments,
           permalink: v.data.permalink,
           url: v.data.url,
           ups: v.data.ups,

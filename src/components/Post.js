@@ -10,6 +10,8 @@ class Post extends PureComponent {
     title: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     starred: PropTypes.bool.isRequired,
+    num_comments: PropTypes.number.isRequired,
+    handleStar: PropTypes.func.isRequired,
   }
 
   render() {
@@ -34,7 +36,7 @@ class Post extends PureComponent {
             alt="Thumbnail for post"
           />
           <div className="desc">
-            <p className="title">{this.props.title}</p>
+            <span className="title">{this.props.title}</span>
             <span className="link">
               <a
                 href={this.props.url}
@@ -44,14 +46,21 @@ class Post extends PureComponent {
                 {this.props.url}
               </a>
             </span>
-            &nbsp;submitted by&nbsp;
-            <a
-              href={`https://reddit.com/u/${this.props.author}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {this.props.author}
-            </a>
+            <p>
+              comments:&nbsp;{this.props.num_comments}
+            </p>
+            <p>
+              submitted by&nbsp;
+              <a
+                href={`https://reddit.com/u/${this.props.author}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {this.props.author}
+              </a>
+              &nbsp;on&nbsp;
+              {`${new Date(this.props.created)}`}
+            </p>
           </div>
         </header>
         <iframe title="Post details" src={this.props.url} />
