@@ -37,7 +37,7 @@ class Post extends PureComponent {
           />
           <div className="desc">
             <span className="title">{this.props.title}</span>
-            <span className="link">
+            <p className="link">
               <a
                 href={this.props.url}
                 target="_blank"
@@ -45,7 +45,7 @@ class Post extends PureComponent {
               >
                 {this.props.url}
               </a>
-            </span>
+            </p>
             <p>
               comments:&nbsp;{this.props.num_comments}
             </p>

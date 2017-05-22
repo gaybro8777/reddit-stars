@@ -2,7 +2,7 @@
 
 A simple responsive Reddit reader interface with the ability to log in and save starred posts.
 
-**Live Link: [https://reddit-stars-ntovblhgdm.now.sh](https://reddit-stars-ntovblhgdm.now.sh)**
+**Live Link: [https://reddit-stars-rdmymbbjpc.now.sh](https://reddit-stars-rdmymbbjpc.now.sh)**
 
 ![](https://github.com/danyim/reddit-stars/raw/master/public/screenshot.png)
 
