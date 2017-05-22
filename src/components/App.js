@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import jquery from 'jquery';
 import * as posts from '../redux/modules/posts';
 import * as user from '../redux/modules/user';
 import './App.css';
 import Login from './Login';
 import Post from './Post';
 import PostItem from './PostItem';
+
+window.$ = window.jQuery = jquery;
 
 class App extends Component {
   constructor(props) {
@@ -16,8 +19,24 @@ class App extends Component {
       starredOnly: false
     };
   }
+
   componentDidMount() {
     this.props.fetchPosts();
+    jquery( ".cross" ).hide();
+    jquery( ".menu" ).hide();
+    jquery( ".hamburger" ).click(function() {
+      jquery( ".menu" ).slideToggle( "slow", function() {
+        jquery( ".hamburger" ).hide();
+        jquery( ".cross" ).show();
+      });
+    });
+
+    jquery( ".cross" ).click(function() {
+      jquery( ".menu" ).slideToggle( "slow", function() {
+        jquery( ".cross" ).hide();
+        jquery( ".hamburger" ).show();
+      });
+    });
   }
 
   toggleStarredOnly() {
@@ -64,6 +83,24 @@ class App extends Component {
           </nav>
           */}
           <Login />
+        </section>
+        <section className="top-nav responsive">
+          <div className="logo">
+            <h2>Reddit Stars</h2>
+              <button className="hamburger">&#9776;</button>
+              <button className="cross">&#735;</button>
+            <div className="menu">
+              <label>
+                <input
+                  name="starred"
+                  type="checkbox"
+                  onClick={this.toggleStarredOnly}
+                />
+                View Starred Only
+              </label>
+              <Login />
+            </div>
+          </div>
         </section>
         <section className="container">
           <section className="left-nav">
