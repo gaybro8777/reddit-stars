@@ -2,7 +2,7 @@
 
 A simple responsive Reddit reader interface with the ability to log in and save starred posts.
 
-### Live Link: [https://reddit-stars-lkulijhufy.now.sh](https://reddit-stars-lkulijhufy.now.sh)
+### Live Link: [https://reddit-stars-xwtrihtivs.now.sh](https://reddit-stars-xwtrihtivs.now.sh)
 
 ## Features
 - Redux with actions organized by [ducks](https://github.com/erikras/ducks-modular-redux)
