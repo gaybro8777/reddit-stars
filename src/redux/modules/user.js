@@ -6,11 +6,14 @@ const REGISTER   = 'easeit/users/REGISTER';
 const LOGIN      = 'easeit/users/LOGIN';
 const LOGOUT     = 'easeit/users/LOGOUT';
 const STAR       = 'easeit/users/STAR';
+const UNSTAR     = 'easeit/users/UNSTAR';
 const START_AUTH = 'easeit/users/START_AUTH';
 const STOP_AUTH  = 'easeit/users/STOP_AUTH';
 
 // Reducer
 export default function reducer(state = {}, action = {}) {
+  let index;
+
   switch (action.type) {
     case REGISTER:
       return {
@@ -45,7 +48,7 @@ export default function reducer(state = {}, action = {}) {
         isAuthenticating: false
       }
     case STAR:
-      const index = state.starred.findIndex(x => x === action.postId);
+      index = state.starred.findIndex(x => x === action.postId);
       const newStarred = [ ...state.starred ];;
       if (index < 0) {
         newStarred.push(action.postId);
@@ -54,6 +57,15 @@ export default function reducer(state = {}, action = {}) {
       return {
         ...state,
         starred: newStarred,
+      }
+    case UNSTAR:
+      index = state.starred.findIndex(x => x === action.postId);
+      return {
+        ...state,
+        starred: [
+          ...state.starred.slice(0, index),
+          ...state.starred.slice(index + 1)
+        ],
       }
     default: return state;
   }
@@ -82,6 +94,10 @@ export function logoutUser(username) {
 
 export function starPost(postId) {
   return { type: STAR, postId };
+}
+
+export function unstarPost(postId) {
+  return { type: UNSTAR, postId };
 }
 
 // Side effects

@@ -1,6 +1,9 @@
 import axios from 'axios';
 import firebase from '../../firebase';
-import { starPost as starForUser } from './user';
+import {
+  starPost as starForUser,
+  unstarPost as unstarForUser
+ } from './user';
 
 // Actions
 const LOAD         = 'easeit/posts/LOAD';
@@ -79,7 +82,7 @@ export function unstarAll() {
   return { type: UNSTAR_ALL };
 }
 
-export function unstar(postId) {
+export function unstarPost(postId) {
   return { type: UNSTAR, postId };
 }
 
@@ -131,6 +134,24 @@ export function star (id) {
     }
   }
 }
+
+export function unstar (id) {
+  return (dispatch, getState) => {
+    dispatch(unstarPost(id));
+    dispatch(unstarForUser(id));
+
+    const state = getState();
+    const token = state.user.token;
+    const authenticated = state.user.authenticated
+    if (authenticated) {
+      firebase.database()
+        .ref('starred')
+        .child(token)
+        .set(state.user.starred);
+    }
+  }
+}
+
 
 export function fetchStarredPosts () {
   return (dispatch, getState) => {

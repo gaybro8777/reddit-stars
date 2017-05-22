@@ -11,6 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.toggleStarredOnly = this.toggleStarredOnly.bind(this);
+    this.toggleStar = this.toggleStar.bind(this);
     this.state = {
       starredOnly: false
     };
@@ -24,6 +25,17 @@ class App extends Component {
       starredOnly: !this.state.starredOnly
     });
   }
+
+  toggleStar(id) {
+    const data = this.props.posts.data.filter(v => v.id === id);
+    if(data.shift().starred) {
+      this.props.unstar(id);
+    }
+    else {
+      this.props.star(id);
+    }
+  }
+
   render() {
     const {
       posts: { activeIndex, data }
@@ -66,7 +78,7 @@ class App extends Component {
                 {...v}
                 selected={activeIndex === i}
                 handleClick={() => this.props.view(i)}
-                handleStar={() => this.props.star(v.id)}
+                handleStar={() => this.toggleStar(v.id)}
               />
             )}
             </ul>
@@ -75,7 +87,7 @@ class App extends Component {
             { activeIndex === -1 ||
               <Post
                 {...data[activeIndex]}
-                handleStar={() => this.props.star(data[activeIndex].id)}
+                handleStar={() => this.toggleStar(data[activeIndex].id)}
               />
             }
           </section>
@@ -97,7 +109,8 @@ const mapDispatchToProps = (dispatch) => {
     // toggleStarredOnly: () => dispatch(posts.toggleStarredOnly()),
     fetchPosts: () => dispatch(posts.fetchPosts()),
     view: (index) => dispatch(posts.view(index)),
-    star: (index, id) => dispatch(posts.star(index, id)),
+    star: (id) => dispatch(posts.star(id)),
+    unstar: (id) => dispatch(posts.unstar(id)),
     login: (username, password) => dispatch(user.login(username, password)),
     logout: () => dispatch(user.logout()),
     register: (username, password) => dispatch(user.register(username, password)),
