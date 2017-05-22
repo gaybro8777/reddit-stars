@@ -1,6 +1,5 @@
 import firebase from '../../firebase';
 import { unstarAll, fetchStarredPosts } from './posts';
-// import axios from 'axios';
 
 // Actions
 const REGISTER   = 'easeit/users/REGISTER';

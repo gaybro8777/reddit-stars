@@ -36,8 +36,12 @@ section.top-nav nav {
   align-self: middle;
 }
 
-section.top-nav login {
-  align-self: flex-end;
+section.top-nav .login {
+
+}
+
+section.top-nav .login .error {
+  color: #CD5A79;
 }
 
 section.top-nav ul {

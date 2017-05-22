@@ -28,7 +28,10 @@ class Login extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (this.state.username === '' || this.state.password === '') return;
+    if (this.state.username === '' || this.state.password === '') {
+      this.setState({ message: 'Username or password cannot be blank' });
+      return;
+    }
 
     const response = this.props.login(this.state.username, this.state.password);
     response.then((message) => {
@@ -61,19 +64,20 @@ class Login extends Component {
       <form className="login" onSubmit={this.handleSubmit}>
         {!this.props.user.authenticated ? (
           <div>
-            {this.state.message}
+            <span className="error">{this.state.message}</span>
             <input
               type="text"
               name="username"
               onChange={this.handleInputChange}
-              placeholder="username"
-              defaultValue="testing@testing.com"
+              placeholder="Email"
+
             />
             <input
               type="password"
               name="password"
               onChange={this.handleInputChange}
-              defaultValue="testing"
+              placeholder="Password"
+
             />
             <button
               type="submit"

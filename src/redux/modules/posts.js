@@ -3,11 +3,11 @@ import firebase from '../../firebase';
 import { starPost as starForUser } from './user';
 
 // Actions
-const LOAD       = 'easeit/posts/LOAD';
-const VIEW       = 'easeit/posts/VIEW';
-const STAR       = 'easeit/posts/STAR';
-const UNSTAR     = 'easeit/posts/UNSTAR';
-const UNSTAR_ALL = 'easeit/posts/UNSTAR_ALL';
+const LOAD         = 'easeit/posts/LOAD';
+const VIEW         = 'easeit/posts/VIEW';
+const STAR         = 'easeit/posts/STAR';
+const UNSTAR       = 'easeit/posts/UNSTAR';
+const UNSTAR_ALL   = 'easeit/posts/UNSTAR_ALL';
 
 // Reducer
 export default function reducer(state = {}, action = {}) {

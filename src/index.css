@@ -29,6 +29,7 @@ button {
   box-shadow: 0 0 0 0 #c0c0c0;
   transition: 0.2s all;
   cursor: pointer;
+  border-radius: .25rem;
 
   color: white;
   border-color: white;

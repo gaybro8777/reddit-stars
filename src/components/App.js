@@ -8,10 +8,22 @@ import Post from './Post';
 import PostItem from './PostItem';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.toggleStarredOnly = this.toggleStarredOnly.bind(this);
+    this.state = {
+      starredOnly: false
+    };
+  }
   componentDidMount() {
     this.props.fetchPosts();
   }
 
+  toggleStarredOnly() {
+    this.setState({
+      starredOnly: !this.state.starredOnly
+    });
+  }
   render() {
     const {
       posts: { activeIndex, data }
@@ -21,22 +33,32 @@ class App extends Component {
       <main className="App">
         <section className="top-nav">
           <h2>EaseIt</h2>
+          <label>
+            <input
+              name="starred"
+              type="checkbox"
+              onClick={this.toggleStarredOnly}
+            />
+            View Starred Only
+          </label>
+          {/*
           <nav>
             <ul>
               <li>
-                Home
-              </li>
-              <li>
-                Starred
               </li>
             </ul>
           </nav>
+          */}
           <Login />
         </section>
         <section className="container">
           <section className="left-nav">
             <ul>
-            {data.map((v, i) =>
+            {data
+              .filter(v => {
+                return this.state.starredOnly ? v.starred : v;
+              })
+              .map((v, i) =>
               <PostItem
                 key={v.id}
                 {...v}
@@ -70,6 +92,7 @@ const mapStateToProps = ({ posts, user }, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    // toggleStarredOnly: () => dispatch(posts.toggleStarredOnly()),
     fetchPosts: () => dispatch(posts.fetchPosts()),
     view: (index) => dispatch(posts.view(index)),
     star: (index, id) => dispatch(posts.star(index, id)),
