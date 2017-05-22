@@ -106,7 +106,6 @@ const mapStateToProps = ({ posts, user }, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // toggleStarredOnly: () => dispatch(posts.toggleStarredOnly()),
     fetchPosts: () => dispatch(posts.fetchPosts()),
     view: (index) => dispatch(posts.view(index)),
     star: (id) => dispatch(posts.star(id)),

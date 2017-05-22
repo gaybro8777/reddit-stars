@@ -6,8 +6,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'testing@testing.com',
-      password: 'testing'
+      username: '',
+      password: ''
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -70,14 +70,12 @@ class Login extends Component {
               name="username"
               onChange={this.handleInputChange}
               placeholder="Email"
-
             />
             <input
               type="password"
               name="password"
               onChange={this.handleInputChange}
               placeholder="Password"
-
             />
             <button
               type="submit"
