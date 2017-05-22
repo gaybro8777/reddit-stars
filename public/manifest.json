@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Reddit Stars",
+  "name": "Simple Reddit reader with Firebase integration",
   "icons": [
     {
       "src": "favicon.ico",

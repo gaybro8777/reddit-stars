@@ -32,6 +32,15 @@ section.top-nav {
   padding: 1rem;
 }
 
+section.top-nav .logo {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+section.top-nav .logo > * {
+  margin-right: 1rem;
+}
+
 section.top-nav nav {
   align-self: middle;
 }

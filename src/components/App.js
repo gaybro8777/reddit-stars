@@ -32,15 +32,17 @@ class App extends Component {
     return (
       <main className="App">
         <section className="top-nav">
-          <h2>EaseIt</h2>
-          <label>
-            <input
-              name="starred"
-              type="checkbox"
-              onClick={this.toggleStarredOnly}
-            />
-            View Starred Only
-          </label>
+          <div className="logo">
+            <h2>Reddit Stars</h2>
+            <label>
+              <input
+                name="starred"
+                type="checkbox"
+                onClick={this.toggleStarredOnly}
+              />
+              View Starred Only
+            </label>
+          </div>
           {/*
           <nav>
             <ul>

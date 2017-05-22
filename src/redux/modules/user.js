@@ -131,6 +131,7 @@ export function login (username, password) {
     return firebase.auth()
       .signInWithEmailAndPassword(username, password)
       .then((e) => {
+        dispatch(unstarAll());
         dispatch(loginUser(username, password, e.uid));
         dispatch(fetchStarredPosts());
       })
