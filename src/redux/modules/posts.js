@@ -1,22 +1,22 @@
-import axios from 'axios';
-import firebase from '../../firebase';
+import axios from 'axios'
+import firebase from '../../firebase'
 import {
   starPost as starForUser,
   unstarPost as unstarForUser
- } from './user';
+ } from './user'
 
 // Actions
-const LOAD         = 'easeit/posts/LOAD';
-const VIEW         = 'easeit/posts/VIEW';
-const STAR         = 'easeit/posts/STAR';
-const UNSTAR       = 'easeit/posts/UNSTAR';
-const UNSTAR_ALL   = 'easeit/posts/UNSTAR_ALL';
+const LOAD = 'easeit/posts/LOAD'
+const VIEW = 'easeit/posts/VIEW'
+const STAR = 'easeit/posts/STAR'
+const UNSTAR = 'easeit/posts/UNSTAR'
+const UNSTAR_ALL = 'easeit/posts/UNSTAR_ALL'
 
 // Reducer
-export default function reducer(state = {}, action = {}) {
-  let post;
-  let posts;
-  let index;
+export default function reducer (state = {}, action = {}) {
+  let post
+  let posts
+  let index
 
   switch (action.type) {
     case LOAD:
@@ -25,73 +25,73 @@ export default function reducer(state = {}, action = {}) {
         data: action.posts
       }
     case UNSTAR:
-      index = state.data.findIndex(v => v.id === action.postId);
-      if(index < 0) return state;
+      index = state.data.findIndex(v => v.id === action.postId)
+      if (index < 0) return state
 
-      post = Object.assign({}, state.data[index]);
-      post.starred = false;
+      post = Object.assign({}, state.data[index])
+      post.starred = false
 
       return {
         ...state,
         data: [
           ...state.data.slice(0, index),
           post,
-          ...state.data.slice(index + 1),
+          ...state.data.slice(index + 1)
         ]
       }
     case UNSTAR_ALL:
-      posts = Object.assign([], state.data);
-      posts.forEach(x => { x.starred = false });
+      posts = Object.assign([], state.data)
+      posts.forEach(x => { x.starred = false })
 
       return {
         ...state,
         data: posts
       }
     case STAR:
-      index = state.data.findIndex(v => v.id === action.postId);
-      if(index < 0) return state;
+      index = state.data.findIndex(v => v.id === action.postId)
+      if (index < 0) return state
 
-      post = Object.assign({}, state.data[index]);
-      post.starred = true;
+      post = Object.assign({}, state.data[index])
+      post.starred = true
 
       return {
         ...state,
         data: [
           ...state.data.slice(0, index),
           post,
-          ...state.data.slice(index + 1),
+          ...state.data.slice(index + 1)
         ]
       }
     case VIEW:
-      post = Object.assign({}, state.data[action.index]);
+      post = Object.assign({}, state.data[action.index])
       return {
         ...state,
         activeIndex: action.index,
         currentPost: post
       }
-    default: return state;
+    default: return state
   }
 }
 
 // Action Creators
-export function loadPosts(posts = []) {
-  return { type: LOAD, posts };
+export function loadPosts (posts = []) {
+  return { type: LOAD, posts }
 }
 
-export function unstarAll() {
-  return { type: UNSTAR_ALL };
+export function unstarAll () {
+  return { type: UNSTAR_ALL }
 }
 
-export function unstarPost(postId) {
-  return { type: UNSTAR, postId };
+export function unstarPost (postId) {
+  return { type: UNSTAR, postId }
 }
 
-export function starPost(postId) {
-  return { type: STAR, postId };
+export function starPost (postId) {
+  return { type: STAR, postId }
 }
 
-export function view(index) {
-  return { type: VIEW, index };
+export function view (index) {
+  return { type: VIEW, index }
 }
 
 // Side effects
@@ -114,67 +114,66 @@ export function fetchPosts () {
           ups: v.data.ups,
           starred: false
         }))
-        dispatch(loadPosts(data));
+        dispatch(loadPosts(data))
       })
 }
 
 export function star (id) {
   return (dispatch, getState) => {
-    dispatch(starPost(id));
-    dispatch(starForUser(id));
+    dispatch(starPost(id))
+    dispatch(starForUser(id))
 
-    const state = getState();
-    const token = state.user.token;
+    const state = getState()
+    const token = state.user.token
     const authenticated = state.user.authenticated
     if (authenticated) {
       firebase.database()
         .ref('starred')
         .child(token)
-        .set(state.user.starred);
+        .set(state.user.starred)
     }
   }
 }
 
 export function unstar (id) {
   return (dispatch, getState) => {
-    dispatch(unstarPost(id));
-    dispatch(unstarForUser(id));
+    dispatch(unstarPost(id))
+    dispatch(unstarForUser(id))
 
-    const state = getState();
-    const token = state.user.token;
+    const state = getState()
+    const token = state.user.token
     const authenticated = state.user.authenticated
     if (authenticated) {
       firebase.database()
         .ref('starred')
         .child(token)
-        .set(state.user.starred);
+        .set(state.user.starred)
     }
   }
 }
 
-
 export function fetchStarredPosts () {
   return (dispatch, getState) => {
-    const state = getState();
-    const token = state.user.token;
+    const state = getState()
+    const token = state.user.token
 
     firebase.database()
       .ref(`starred/${token}`)
       .once('value', postIds => {
-        const starred = [];
+        const starred = []
         postIds.forEach(id => {
-          const val = id.val();
-          starred.push(val);
-          dispatch(starPost(val));
-          dispatch(starForUser(val));
-        });
+          const val = id.val()
+          starred.push(val)
+          dispatch(starPost(val))
+          dispatch(starForUser(val))
+        })
         // console.log('loaded ', starred.length, 'records');
 
         // setTimeout(() => {
         //   const postIds = postId.val() || [];
         //   dispatch(receiveStarredPosts(postIds));
         // }, 0);
-      });
+      })
   }
 }
 
