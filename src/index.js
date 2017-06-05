@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import configureStore from './redux/configureStore';
-import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
-import './index.css';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {Provider} from 'react-redux'
+import configureStore from './redux/configureStore'
+import App from './components/App'
+import registerServiceWorker from './registerServiceWorker'
+import './index.css'
 
 const iniitalState = {
   posts: {
@@ -18,14 +18,14 @@ const iniitalState = {
     isAuthenticating: false,
     starred: []
   }
-};
+}
 
-const store = configureStore(iniitalState);
+const store = configureStore(iniitalState)
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')
-);
-registerServiceWorker();
+)
+registerServiceWorker()
